@@ -1,0 +1,3 @@
+# Bibliotecas principais para o Dashboard
+streamlit
+requests

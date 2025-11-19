@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "Visionary Solution",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 4.7, "left": 4.6, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -16.8,
+      "left": 155.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 38.3,
+      "left": -178.9,
+      "rotate": 90,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 38.3,
+      "left": -121.3,
+      "rotate": 90,
+      "attrs": { "color": "yellow", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 38.3,
+      "left": -63.7,
+      "rotate": 90,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    { "type": "wokwi-hc-sr04", "id": "sr04", "top": -123.3, "left": 34.3, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "bz1:1", "esp:GND.1", "black", [ "v86.4", "h-9.6" ] ],
+    [ "btn3:1.r", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:GND.2", "btn2:1.r", "black", [ "h0" ] ],
+    [ "esp:GND.2", "btn1:1.r", "black", [ "h0" ] ],
+    [ "btn1:2.r", "esp:D12", "green", [ "v0" ] ],
+    [ "btn2:2.r", "esp:D13", "gold", [ "v0" ] ],
+    [ "btn3:2.r", "esp:D14", "blue", [ "v0" ] ],
+    [ "bz1:2", "esp:D15", "green", [ "v0" ] ],
+    [ "sr04:GND", "esp:GND.1", "black", [ "h-1.2", "v182.5" ] ],
+    [ "sr04:VCC", "esp:5V", "red", [ "v-38.4", "h-168" ] ],
+    [ "sr04:Trig", "esp:D26", "green", [ "v-48", "h-177.1" ] ],
+    [ "sr04:Echo", "esp:D25", "blue", [ "v-57.6", "h-172.6" ] ],
+    [ "esp:D25", "sr04:ECHO", "violet", [ "h-9.6", "v-96", "h124.8" ] ],
+    [ "sr04:TRIG", "esp:D26", "orange", [ "v19.2", "h-115.6", "v115.2" ] ],
+    [ "sr04:VCC", "esp:VIN", "red", [ "v9.6", "h-105.6", "v182.4" ] ]
+  ],
+  "dependencies": {}
+}
