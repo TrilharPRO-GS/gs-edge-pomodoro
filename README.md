@@ -26,6 +26,7 @@ Ele não é apenas um cronômetro; é um sistema de **Gêmeo Digital (Digital Tw
 3.  **Gamifica o Esforço:** Envia dados de ciclos completados para a nuvem, permitindo que a plataforma de software recompense o usuário.
 4.  **É Bidirecional:** Pode ser controlado tanto fisicamente (botões) quanto remotamente (dashboard web).
 
+![Hardware](./img/hardware%20pomodoro%20trilhar.png)
 ---
 
 ## ⚙️ 2. Arquitetura da Solução
@@ -37,6 +38,7 @@ A solução "Trilhar" foi projetada seguindo uma arquitetura em três camadas ro
 > *A imagem acima ilustra o fluxo de dados desde a borda até a aplicação.*
 
 ### 1. Camada IoT (Edge)
+
 Esta é a camada física, responsável pela interação com o usuário e coleta de dados primários.
 
 * **Timer Pomodoro (ESP32):** O dispositivo central da solução.
@@ -45,6 +47,7 @@ Esta é a camada física, responsável pela interação com o usuário e coleta 
     * **Digital Twin:** Atua como a contraparte física da entidade virtual `urn:ngsi-ld:SessaoEstudo:001`.
 
 ### 2. Camada Back-end (Cloud / Middleware)
+
 Hospedada em uma Máquina Virtual (VM) na Azure, esta camada processa, armazena e distribui os dados utilizando containers Docker do ecossistema FIWARE.
 
 * **MQTT Broker (Eclipse Mosquitto):**
@@ -64,6 +67,7 @@ Hospedada em uma Máquina Virtual (VM) na Azure, esta camada processa, armazena 
     * **Função:** Banco de dados NoSQL utilizado tanto pelo Orion (para guardar o estado atual) quanto pelo STH-Comet (para guardar o histórico).
 
 ### 3. Camada Application (Frontend)
+
 A interface com o usuário final, focada na experiência e visualização de dados.
 
 * **Site "Trilhar PRO" (Simulado):** Representa a integração futura com a plataforma principal de *reskilling*.
@@ -164,6 +168,7 @@ O dispositivo deve ser montado conforme o diagrama abaixo (ou `diagram.json` no 
 Siga esta ordem rigorosamente para garantir a conexão de todos os componentes.
 
 ### Passo 1: Configuração da Nuvem (Backend)
+
 1.  **Criar VM:** Inicie uma VM.
 2. **Abrir Portas (Firewall):** No "Network Security Group" (NSG) da VM, crie regras de entrada para **Permitir (Allow)** tráfego **TCP** de **Qualquer (Any)** origem para as seguintes portas:
     * `22`   (SSH)
@@ -195,6 +200,7 @@ Siga esta ordem rigorosamente para garantir a conexão de todos os componentes.
     * Crie a **Subscription** no Orion para notificar o STH-Comet sobre mudanças em `sessoes_completas`.
 
 ### Passo 2: Inicialização do Hardware (Edge)
+
 1.  Abra o projeto no simulador [**Wokwi**](https://wokwi.com/projects/447807652777145345).
 2.  No arquivo `sketch.ino`, edite a variável:
     ```cpp
@@ -204,6 +210,7 @@ Siga esta ordem rigorosamente para garantir a conexão de todos os componentes.
 4.  Aguarde o Monitor Serial exibir `Conectado ao MQTT Broker!`. Isso garante que a entidade foi criada no FIWARE.
 
 ### Passo 3: Inicialização da Aplicação (Frontend)
+
 1.  No seu ambiente local (ou na VM), prepare o Python:
     ```bash
     python -m venv venv
@@ -238,15 +245,21 @@ O sistema implementa uma Máquina de Estados Finitos no ESP32:
 ## 📸 9. Resultados da PoC (Prova de Conceito)
 
 ### Dashboard Integrado
+
 O dashboard exibe o estado em tempo real e permite configuração remota.
+
 ![Dashboard Final](./img/pomodoro%20trilhar.png)
 
 ### Monitoramento Serial (Wokwi)
+
 O console do ESP32 mostra o envio de telemetria MQTT e a recepção de comandos.
+
 ![Monitor Serial](./img/monitor%20serial%20trilhar.png)
 
 ### Integração FIWARE (Postman)
+
 Validação de que os dados estão persistidos no Orion.
+
 ```json
 {
     "id": "urn:ngsi-ld:SessaoEstudo:001",
