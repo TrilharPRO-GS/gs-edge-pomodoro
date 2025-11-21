@@ -6,7 +6,7 @@
 
 > **Projeto:** Monitor de Produtividade Inteligente (Pomodoro IoT)
 
-🔗 **Vídeo explicativo no YouTube:** [Clique aqui para abrir]()
+🔗 **Vídeo explicativo no YouTube:** [Clique aqui para abrir](https://youtu.be/zQraeziCJPs?si=_SvHDnAez8krAPBj)
 
 🔗 **Projeto no Wokwi:** [Clique aqui para abrir](https://wokwi.com/projects/447807652777145345)
 
